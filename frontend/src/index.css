@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-[#FAF9F5] text-[#193B37] font-sans antialiased selection:bg-[#E5F2ED] selection:text-[#167D78];
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-size: 15px;
+    line-height: 1.65;
+    letter-spacing: -0.005em;
+  }
+
+  /* Main Headings: 32-40px, weight 700 */
+  h1 {
+    @apply text-[#193B37] font-sans font-bold tracking-tight text-[30px] sm:text-[34px] lg:text-[36px] leading-[1.25];
+  }
+
+  /* Major Section Headings: 22-28px, weight 600-700 */
+  h2 {
+    @apply text-[#193B37] font-sans font-bold tracking-tight text-[22px] sm:text-[24px] leading-snug;
+  }
+
+  h3 {
+    @apply text-[#193B37] font-sans font-semibold tracking-tight text-[18px] sm:text-[20px] leading-snug;
+  }
+
+  /* Card Headings / Subheadings: 17-19px, weight 600 */
+  h4 {
+    @apply text-[#193B37] font-sans font-semibold tracking-normal text-[17px] sm:text-[18px] leading-snug;
+  }
+
+  /* Body Text: 15-17px, weight 400-500 */
+  p {
+    @apply font-sans font-normal leading-relaxed text-[#6B7F7B] text-[15px];
+  }
+
+  /* Buttons: 14-16px, weight 600 */
+  button {
+    @apply font-sans font-semibold text-[14px] sm:text-[15px] tracking-normal;
+  }
+
+  /* Tables: 14-15px, weight 400-500 */
+  table {
+    @apply font-sans font-normal text-[#193B37] text-[14px];
+  }
+}
+
+/* Mizu Calm + Matcha Growth Surfaces */
+.calm-surface,
+.calm-card,
+.zen-card {
+  background: #ffffff;
+  border: 1px solid #d8e7e3;
+  border-radius: 1rem;
+  box-shadow:
+    0 1px 3px 0 rgba(22, 125, 120, 0.04),
+    0 1px 2px -1px rgba(22, 125, 120, 0.03);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.calm-surface-hover,
+.calm-card-hover,
+.zen-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.calm-surface-hover:hover,
+.calm-card-hover:hover,
+.zen-card-hover:hover {
+  border-color: #3fa796;
+  transform: translateY(-1.5px);
+  box-shadow:
+    0 8px 20px -3px rgba(22, 125, 120, 0.08),
+    0 0 0 1px #d8e7e3;
+}
+
+.calm-modal,
+.zen-modal {
+  background: rgba(255, 255, 255, 0.99);
+  backdrop-filter: blur(20px);
+  border: 1px solid #d8e7e3;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 45px -10px rgba(22, 125, 120, 0.12);
+}
+
+/* Japanese Hanko (判子 - Traditional Seal Stamp) in Mizu Teal */
+.hanko-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(22, 125, 120, 0.4);
+  background: #f2f9f8;
+  color: #167d78;
+  font-family: "Noto Sans JP", "Noto Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* Psychological Status Badges */
+.badge-mizu {
+  background: #f2f9f8;
+  border: 1px solid #c7e5dd;
+  color: #167d78;
+}
+
+.badge-matcha {
+  background: #f4f8f5;
+  border: 1px solid #c7dfc9;
+  color: #3d5f45;
+}
+
+.badge-amber {
+  background: #fdf8ee;
+  border: 1px solid #f3dab0;
+  color: #b88033;
+}
+
+.badge-coral {
+  background: #faf0f0;
+  border: 1px solid #e9b8b8;
+  color: #ad4848;
+}
+
+/* Clean, Soothing Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf9f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d8e7e3;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9fd0c5;
+}
+
+/* Subtle, Gentle Breathing Animation for Stable/Calm states */
+@keyframes calm-breathe {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+}
+
+.animate-calm-breathe {
+  animation: calm-breathe 6s ease-in-out infinite;
+}
+
+/* Gentle Pulse for Active Steps */
+@keyframes step-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 125, 120, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(22, 125, 120, 0);
+  }
+}
+
+.animate-step-pulse {
+  animation: step-pulse 3s infinite ease-in-out;
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

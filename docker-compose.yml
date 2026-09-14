@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  # Backend API Service (FastAPI + SQLite + Scikit-Learn ML Engine)
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: kizuna-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    volumes:
+      - sqlite_data:/app/backend/app
+    networks:
+      - kizuna-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # Frontend Web Application (React 18 + Vite + Tailwind CSS + Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: kizuna-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - kizuna-network
+
+networks:
+  kizuna-network:
+    driver: bridge
+
+volumes:
+  sqlite_data:
+    driver: local
